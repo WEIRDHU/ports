@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Complete Responsive Personal Portfolio Website Design</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+   <!-- aos css link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+   <style>@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+    :root{
+       --yellow:#ffcc0d;
+       --black:#000;
+       --white:#fff;
+       --light-bg:#eee;
+       --border-bold:.5rem solid var(--black);
+       --border-light:.2rem solid var(--black);
+    }
+    
+    *{
+       font-family: 'Rubik', sans-serif;
+       margin:0; padding:0;
+       box-sizing: border-box;
+       outline: none; border:none;
+       text-decoration: none;
+       text-transform: capitalize;
+       color:var(--black);
+    }
+    
+    *::selection{
+       background-color: var(--black);
+       color:var(--yellow);
+    }
+    
+    *::-webkit-scrollbar{
+       height: .5rem;
+       width: 1rem;
+    }
+    
+    *::-webkit-scrollbar-track{
+       background-color: transparent;
+    }
+    
+    *::-webkit-scrollbar-thumb{
+       background-color: var(--yellow);
+    }
+    
+    html{
+       font-size: 62.5%;
+       overflow-x: hidden;
+       scroll-behavior: smooth;
+    }
+    
+    body{
+       overflow: hidden;
+       transition: .2s linear !important;
+    }
+    
+    body.active{
+       padding-left: 35rem;
+    }
+    
+    section{
+       padding:3rem 2rem;
+       margin: 0 auto;
+       max-width: 1200px;
+       text-align: center;
+    }
+    
+    .table-container {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+    
+    table {
+       border-collapse: collapse;
+       margin: 25px 0;
+       font-size: 1em;
+       min-width: 400px;
+       box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    table thead tr {
+       background-color: var(--yellow);
+       color: var(--black);
+       text-align: left;
+       font-weight: bold;
+    }
+    
+    table th, table td {
+       padding: 12px 15px;
+    }
+    
+    table tbody tr {
+       border-bottom: 1px solid var(--black);
+    }
+    
+    table tbody tr:nth-of-type(even) {
+       background-color: #f3f3f3;
+    }
+    
+    table tbody tr:last-of-type {
+       border-bottom: 2px solid var(--black);
+    }
+    
+    table tbody tr.active-row {
+       font-weight: bold;
+       color: var(--yellow);
+    }
+    
+    .heading{
+       margin-bottom: 3rem;
+       text-align: center;
+    }
+    
+    .heading span{
+       text-transform: uppercase;
+       font-size: 6.5rem;
+       border-bottom: var(--border-bold);
+    }
+    
+    .message{
+       position: sticky;
+       top:2rem;
+       max-width: 1200px;
+       margin:0 auto;
+       background-color: var(--yellow);
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       padding:2rem;
+       font-size: 2rem;
+    }
+    
+    .message i{
+       cursor: pointer;
+    }
+    
+    .btn{
+       display: inline-block;
+       margin-top: 1rem;
+       cursor: pointer;
+       padding:1rem 3rem;
+       border:var(--border-light);
+       font-size: 2rem;
+       background: none;
+    }
+    
+    .btn:hover{
+       background-color: var(--black);
+       color:var(--white);
+    }
+    
+    .header{
+       position: fixed;
+       top:0; left:-35rem;
+       height: 100vh;
+       background-color: var(--white);
+       border-right: var(--border-bold);
+       width: 35rem;
+       padding:3rem 2rem;
+       text-align: center; 
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       flex-flow: column;
+       transition: .2s linear !important;
+       text-align: center;
+       z-index: 1000;
+    }
+    
+    .header .logo{
+       text-transform: uppercase;
+       border-bottom: var(--border-bold);
+       font-weight: bolder;
+       font-size: 4.5rem;
+    }
+    
+    .header .navbar{
+       width: 100%;
+    }
+    
+    .header .navbar a{
+       display: block;
+       font-size: 2.5rem;
+       padding:1.5rem;
+       margin:.5rem;
+    }
+    
+    .header .navbar a.active,
+    .header .navbar a:hover{
+       background-color: var(--yellow);
+    }
+    
+    .header .follow a{
+       font-size: 3rem;
+       margin:0 1rem;
+       cursor: pointer;
+       transition: .6s linear !important;
+    }
+    
+    .header .follow a:hover{
+       transform: rotate(360deg);
+    }
+    
+    #menu-btn{
+       position: absolute;
+       top:0; right:-5.5rem;
+       height: 4.5rem;
+       line-height: 4.5rem;
+       width: 5rem;
+       font-size: 2.5rem;
+       cursor: pointer;
+       background-color: var(--black);
+       color:var(--white);
+    }
+    
+    .header.active{
+       left: 0;
+    }
+    
+    .home{
+       display: flex;
+       align-items: center;
+       flex-wrap: wrap;
+       gap:2rem;
+       min-height: 100vh;
+    }
+    
+    .home .image{
+       flex:1 1 40rem;
+    }
+    
+    .home .image img{
+       height: 65rem;
+       padding:2rem;
+       border:var(--border-bold);
+    }
+    
+    .home .content{
+       flex:1 1 40rem;
+    }
+    
+    .home .content h3{
+       text-transform: uppercase;
+       font-size: 5rem;
+       margin-bottom: .5rem;
+    }
+    
+    .home .content span{
+       display: inline-block;
+       padding:1rem 2rem;
+       background-color: var(--yellow);
+       font-size: 2.5rem;
+       margin:1rem 0;
+    }
+    
+    .home .content p{
+       font-size: 1.7rem;
+       line-height: 2;
+       padding:1rem 0;
+    }
+    
+    .about .biography p{
+       margin:2rem auto;
+       max-width: 70rem;
+       line-height: 2;
+       font-size: 1.8rem;
+    }
+    
+    .about .biography .bio{
+       margin: 1rem 0;
+    }
+    
+    .about .biography .bio h3{
+       padding:1rem 2rem;
+       display: inline-block;
+       margin:1rem;
+       background-color: var(--light-bg);
+       border:var(--border-light);
+       word-break: break-all;
+       font-size: 2.5rem;
+       font-weight: normal;
+       text-transform: none;
+    }
+    
+    .about .biography .bio h3 span{
+       font-weight: lighter;
+    }
+    
+    .about .skills{
+       margin:3rem 0;
+    }
+    
+    .about .skills .progress{
+       margin-top: 1rem;
+    }
+    
+    .about .skills .progress .bar{
+       margin:1rem auto;
+       max-width: 70rem;
+       border:var(--border-bold);
+       padding:1rem;
+    }
+    
+    .about .skills .progress .bar h3{
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       font-size: 2rem;
+       padding:1rem 2rem;
+       background-color: var(--yellow);
+    }
+    
+    .about .skills .progress .bar span{
+       font-weight: normal;
+    }
+    
+    .about .skills .progress .bar:nth-child(1) h3{
+       width: 95%;
+    }
+    
+    .about .skills .progress .bar:nth-child(2) h3{
+       width: 80%;
+    }
+    
+    .about .skills .progress .bar:nth-child(3) h3{
+       width: 65%;
+    }
+    
+    .about .skills .progress .bar:nth-child(4) h3{
+       width: 80%;
+    }
+    
+    .about .edu-exp .row{
+       display: flex;
+       flex-wrap: wrap;
+       gap:1.5rem;
+    }
+    
+    .about .edu-exp .row .box-container{
+       flex:1 1 40rem;
+    }
+    
+    .about .edu-exp .row .box-container .title{
+       padding:1.5rem;
+       font-size: 3rem;
+       background-color: var(--yellow);
+    }
+    
+    .about .edu-exp .row .box-container .box{
+       text-align: left;
+       margin:1.5rem 0;
+       background-color: var(--light-bg);
+       padding:2rem;
+    }
+    
+    .about .edu-exp .row .box-container .box span{
+       font-size: 1.5rem;
+    }
+    
+    .about .edu-exp .row .box-container .box h3{
+       font-size: 2.5rem;
+       font-weight: normal;
+       margin-top: 1.5rem;
+       margin-bottom: 1rem;
+    }
+    
+    .about .edu-exp .row .box-container .box p{
+       line-height: 1.5;
+       font-size: 1.7rem;
+       line-height: 2;
+    }
+    
+    .services .box-container{
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+       gap:1.5rem;
+       align-items: flex-start;
+    }
+    
+    .services .box-container .box{
+       padding:3rem 2rem;
+       border:var(--border-light);
+    
+    }
+    
+    .services .box-container .box i{
+       font-size: 4rem;
+       margin-bottom: 2rem;
+    }
+    
+    .services .box-container .box h3{
+       margin:1rem 0;
+       font-size: 2rem;
+       padding:1.5rem;
+       background-color: var(--yellow);
+       font-weight: normal;
+    }
+    
+    .services .box-container .box p{
+       line-height: 2;
+       font-size: 1.7rem;
+    }
+    
+    .services .box-container .box:hover{
+       background-color: var(--black);
+    }
+    
+    .services .box-container .box:hover i{
+       color:var(--white);
+    }
+    
+    .services .box-container .box:hover p{
+       color:var(--white);
+    }
+    
+    .portfolio .box-container{
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+       gap:1.5rem;
+       align-items: flex-start;
+    }
+    
+    .portfolio .box-container .box img{
+       height: 30rem;
+       width: 100%;
+       object-fit: cover;
+    }
+    
+    .portfolio .box-container .box h3{
+       margin:1rem 0;
+       font-size: 2rem;
+       font-weight: normal;
+    }
+    
+    .portfolio .box-container .box span{
+       font-size: 1.7rem;
+    }
+    
+    .contact form{
+       max-width: 70rem;
+       margin:0 auto;
+    }
+    
+    .contact form .box{
+       width: 100%;
+       padding:1.4rem;
+       font-size: 2rem;
+       text-transform: none;
+       border:var(--border-light);
+       margin:1rem 0;
+    }
+    
+    .contact form textarea{
+       height: 20rem;
+       resize: none;
+    }
+    
+    .contact form .flex{
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-between;
+    }
+    
+    .contact form .flex .box{
+       width: 49%;
+    }
+    
+    .contact .box-container{
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+       gap:1.5rem;
+       align-items: flex-start;
+       margin-top: 3rem;
+    }
+    
+    .contact .box-container .box{
+       padding:3rem 2rem;
+       border:var(--border-light);
+    }
+    
+    .contact .box-container .box i{
+       font-size: 3rem;
+       height: 7rem;
+       width: 7rem;
+       line-height: 7rem;
+       color:var(--white);
+       background-color: var(--black);
+       margin-bottom: .5rem;
+    }
+    
+    .contact .box-container .box h3{
+       margin:1.5rem 0;
+       font-size: 2.5rem;
+    }
+    
+    .contact .box-container .box p{
+       font-size: 2rem;
+       text-transform: none;
+    }
+    
+    .credit{
+       text-align: center;
+       background-color: var(--black);
+       padding:3rem;
+       font-size: 2rem;
+       color:var(--white);
+    }
+    
+    .credit span{
+       color:var(--yellow);
+    }
+    
+    
+    
+    
+    
+    
+    /* media queries  */
+    
+    @media (max-width:991px){
+    
+       html{
+          font-size: 55%;
+       }
+    
+       body.active{
+          padding-left: 0;
+       }
+    
+    }
+    
+    @media (max-width:450px){
+    
+       html{
+          font-size: 50%;
+       }
+    
+       .header.active{
+          padding-top: 7rem;
+       }
+    
+       #menu-btn.fa-times{
+          right:0;
+       }
+    
+       .home .image img{
+          height: auto;
+          width: 100%;
+       }
+    
+       .heading span{
+          font-size: 4rem;
+       }
+    
+       .about .biography .bio h3{
+          font-size: 2rem;
+       }
+    
+       .contact form .flex .box{
+          width: 100%;
+       }
+    
+    }</style>
+
+</head>
+<body>
+<header class="header">
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+ 
+    <a href="#home" class="logo">Portfolio</a>
+ 
+    <nav class="navbar">
+       <a href="#home" class="active">home</a>
+       <a href="#about">about</a>
+       <a href="#services">Job Seeking Documents</a>
+       <a href="#portfolio">Self Reflection</a>
+       <a href="#contact">Samples Of My Work</a>
+    </nav>
+ 
+    <div class="follow">
+       <a href="https://www.facebook.com/anwar.abinader/" class="fab fa-facebook-f"></a>
+       <a href="www.linkedin.com/in/anwar-abi-nader-4a263223a" class="fab fa-linkedin"></a>
+       <a href="#" class="fab fa-github"></a>
+    </div>
+ 
+ </header>
+ 
+ <!-- header section ends -->
+ 
+ <!-- home section starts  -->
+ 
+ <section class="home" id="home">
+ 
+    <div class="image" data-aos="fade-right">
+       <img src="Me.jpeg" alt="">
+    </div>
+ 
+    <div class="content">
+       <h3 data-aos="fade-up">hi, i am Anwar Abi Nader</h3>
+       <span data-aos="fade-up">Computer Science Student & developer</span>
+       <p data-aos="fade-up">I'm a student at AUST achrafieh, I work as a part time job at BANK AUDI IT management.</p>
+       <a data-aos="fade-up" href="#about" class="btn">about me</a>
+    </div>
+ 
+ </section>
+ 
+ <section class="about" id="about">
+ 
+    <h1 class="heading" data-aos="fade-up"> <span>biography</span> </h1>
+ 
+    <div class="biography">
+ 
+       <p data-aos="fade-up">I have a Professional Development Plan, Till Graduating From University. Let's check out my plans! 
+        <div class="table-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>While At University</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Get A Gpa Of 3.8</td>
+                        <td>Make New Friends</td>
+                        <td>Find An Internship</td>
+                        <td>Gain Experience</td>
+                    </tr>
+                    <!-- More rows as needed -->
+                </tbody>
+            </table>
+        </div>
+       </p>
+ 
+       <div class="bio">
+          <h3 data-aos="zoom-in"> <span>name : </span> Anwar Abi Nader </h3>
+          <h3 data-aos="zoom-in"> <span>email : </span> anwarabinader@gmail.com </h3>
+          <h3 data-aos="zoom-in"> <span>address : </span> Lebanon, Jounieh </h3>
+          <h3 data-aos="zoom-in"> <span>phone : </span> +961-70570699 </h3>
+          <h3 data-aos="zoom-in"> <span>age : </span> 21 Years </h3>
+          <h3 data-aos="zoom-in"> <span>experience : </span> 1 Year </h3>
+          <h3 data-aos="zoom-in"> <span>LinkedIn Profile : </span> www.linkedin.com/in/anwar-abi-nader-4a263223a </h3>
+       </div>
+ 
+
+ 
+    </div>
+    
+    <div class="skills" data-aos="fade-up">
+ 
+       <h1 class="heading"> <span>skills</span> </h1>
+ 
+       <div class="progress">
+          <div class="bar" data-aos="fade-left"> <h3><span>HTML</span> <span>95%</span></h3> </div>
+          <div class="bar" data-aos="fade-right"> <h3><span>CSS</span> <span>80%</span></h3> </div>
+          <div class="bar" data-aos="fade-left"> <h3><span>JavaScript</span> <span>65%</span></h3> </div>
+          <div class="bar" data-aos="fade-right"> <h3><span>PHP</span> <span>80%</span></h3> </div>
+       </div>
+ 
+    </div>
+ 
+ </section>
+ 
+ <section class="services" id="services">
+ 
+    <h1 class="heading" data-aos="fade-up"> <span>Job Seeking Documents</span> </h1>
+ 
+    <div class="box-container">
+
+ 
+        <a href="Check this out.pdf" class="btn" data-aos="fade-up">Click Here To Check Out My Job Seeking Document.</a>
+ 
+    </div>
+ 
+ </section>
+ 
+ <!-- services section ends -->
+ 
+ <!-- portfolio section starts  -->
+
+
+ 
+ <section class="about" id="about">
+ <section id="portfolio"></section>
+    <h1 class="heading" data-aos="fade-up"> <span>Self-Reflection</span> </h1>
+ 
+ 
+            <div class="edu-exp">
+ 
+          
+                <div class="row">
+          
+                   <div class="box-container">
+          
+                      <h3 class="title" data-aos="fade-right">Observing Communication in the Workplace</h3>
+          
+                      <div class="box" data-aos="fade-right">
+                         <p>1) Reston Hotel <br>
+                            2) I saw around 15 employees <br>
+                            3) There is two different types of industries there, I saw the IT department for the system software and the Hospitality industry. <br>
+                            4) The company is a very popular hotel among celebrities and High class people. They own other hotel places, as like portaluna and they are working on a new hotel that they might open on summer! <br>
+                            5) The skills needed to be an IT there was to be able to know how to communicate with other employees to see what’s wrong with the system like a system shutdown or an error code, as well as seeing customers if their wifi is working or they have some trouble connecting or even if the Tv is malfunctioning or their phone.
+                            While in the Hospitality industry they need to have a very good communication skill to be able to handle customers and how to reply to them and show them that whatever they need is ready for them.
+                            </p>
+                      </div>
+          
+                      <div class="box" data-aos="fade-right">
+                         <p>6) There is 3 shifts because the hotel opens 24/7 with services there is the AM shift starting from : 7 am till 3 pm
+                            Pm shift: 3 pm till 11 pm
+                            Overnight shift: 11 pm till 7 am! <br>
+                            
+                            7) I saw how employees interact with each other usually there is a manager for each industry this manager have around 2 or 3 employees every time he receive a call from another employee he send one of his to checkout what’s the problem and know what is wrong so they can fix it as soon as possible <br>
+                            
+                            8) I do see the employees happy a lot, because they love what they do even the customers are very well known and classy who doesn’t like to argue much, as well as every employee have a high salary so the owners are giving what they need for the employees so they give an incredible job back to them. <br>
+                            9) The main customers of the hotel are tourists who comes from outside Lebanon visiting new places, seeing family, and as well as coming for vacation! <br>
+                            10) I saw that their customer service is amazing and on time like whatever the customer need it’s always ready and in 1 to 5 minute everything is complete, fast and quick there is all the services needed to support a person at any time of the day! <br>
+                            11) It is a really good place to work at because the owners see whatever you work and do right they don’t abandon you on it they push you by giving you a raise so you can work harder and happier because they are giving you whatever you need with happy satisfaction! As long as you do your job right. <br>
+                            12) Yes there is experience you can have some experiences in IT as you worked on a system before as well for hospitality working in a hotel is the main experience job for hospitality so it’s of course a big thing of experience for you cv later on. <br>
+                            </p>
+                      </div>
+          
+          
+                   </div>
+          
+                   <div class="box-container">
+          
+                      <h3 class="title" data-aos="fade-left">How A Company Hires :</h3>
+          
+                      <div class="box" data-aos="fade-left">
+                         <p>Company name: Teleferique <br>
+                            Employee name: Toufic Abi Nader <br>
+                            Employee position: IT Manager <br>
+                            
+                            1.	What are we looking for when we hire an IT assistant (skills, behaviors, attitudes)?<br>
+                            At Teleferique, when hiring an IT assistant, we look for candidates with a strong foundation in computer science or information technology. Technical skills such as knowledge of operating systems, networking, and troubleshooting are essential. Additionally, we value candidates who demonstrate problem-solving abilities, attention to detail, and excellent communication skills. Given the dynamic nature of IT, a willingness to learn and adapt to new technologies is also crucial. <br>
+                            2.	For what types of IT jobs do we hire entry-level/recent graduates? <br>
+                            We offer entry-level positions in IT support, system administration, and network administration. These roles are suitable for recent graduates who are eager to apply their technical skills in a real-world environment and gain hands-on experience in IT operations. <br>
+                            3.	How many applications do we typically receive for IT assistant positions? <br>
+                            The number of applications for IT assistant positions can vary, but on average, we receive around 30 to 50 applications per vacancy. <br>
+                            4.	How much experience does an entry-level IT hire need?<br>
+                            For entry-level IT hires, we don't require extensive professional experience. However, candidates should have a solid understanding of basic IT concepts and technologies gained through coursework, internships, or personal projects. <br>
+                            5.	How do we look for new IT employees? Do we use online job boards? Which ones? What other methods? <br>
+                            We primarily utilize online job boards such as Bayt.com and LinkedIn to advertise our IT job openings. Additionally, we leverage our company website and social media platforms to reach potential candidates. Networking events, university career fairs, and employee referrals are also effective methods for finding qualified IT talent. <br>
+                            6.	Do you have a copy of your IT assistant application form that I could review for my class?<br>
+                            Certainly, I can provide you with a sample copy of our IT assistant application form. It typically includes sections for personal information, education background, relevant coursework or certifications, technical skills, work experience (if any), and references. <br>
+                            </p>
+                      </div>
+          
+          
+                   </div>
+          
+                </div>
+          
+             </div>
+ 
+ </section>
+ 
+ <!-- portfolio section ends -->
+ 
+ <!-- contact section starts  -->
+ 
+ <section class="about" id="about">
+ 
+    <h1 class="heading" data-aos="fade-up"> <span>Samples Of My Work</span> </h1>
+
+
+    <div class="edu-exp">
+ 
+        <h1 class="heading" data-aos="fade-up"> <span>education & experience</span> </h1>
+  
+        <div class="row">
+  
+           <div class="box-container">
+  
+              <h3 class="title" data-aos="fade-right">education</h3>
+  
+              <div class="box" data-aos="fade-right">
+                 <span>( 2020 - 2023 )</span>
+                 <h3>web developer</h3>
+                 <p>I Graduated From A Technical School In 2023 With A Final Grade Of 18.2 And I Was #2 In Lebanon In Grading With This High Grade.</p>
+              </div>
+  
+              <div class="box" data-aos="fade-right">
+                 <span>( 2023 - 2024 )</span>
+                 <h3>Computer Science</h3>
+                 <p>I'm Currently A Student At AUST Achrafieh, That's my second semester, I have a GPA of 3.6 so far.</p>
+              </div>
+  
+  
+           </div>
+  
+           <div class="box-container">
+  
+              <h3 class="title" data-aos="fade-left">experience</h3>
+  
+              <div class="box" data-aos="fade-left">
+                 <span>( 2017 - 2019 )</span>
+                 <h3>Repair Shop</h3>
+                 <p>I used to repair computes, laptops, mobile devices. I made it my own local small buisness.</p>
+              </div>
+  
+              <div class="box" data-aos="fade-left">
+                 <span>( 2023 - 2024 )</span>
+                 <h3>Software & IT Managment</h3>
+                 <p>I worked at Teleferique Jounieh, as a software and IT managment, I used to fix their computers and servers.</p>
+              </div>
+  
+           </div>
+  
+        </div>
+  
+     </div>
+  
+     <a href="Samples of my work.pdf" class="btn" data-aos="fade-up">Click Here To Check More Of Samples Of My Work.</a>
+
+    </section>
+
+    
+    <section class="contact" id="contact">
+
+    <div class="box-container">
+ 
+       <div class="box" data-aos="zoom-in">
+          <i class="fas fa-phone"></i>
+          <h3>phone</h3>
+          <p>+961-70570699</p>
+       </div>
+ 
+       <div class="box" data-aos="zoom-in">
+          <i class="fas fa-envelope"></i>
+          <h3>email</h3>
+          <p>anwarabinader@gmail.com</p>
+       </div>
+ 
+       <div class="box" data-aos="zoom-in">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>address</h3>
+          <p>Lebanon, Jounieh , Ghadir</p>
+       </div>
+ 
+    </div>
+ 
+ </section>
+ 
+ <!-- contact section ends -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- custom js file link  -->
+ <script src="js/script.js"></script>
+ 
+ <!-- aos js link  -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+ 
+ <script>
+ 
+    AOS.init({
+       duration:800,
+       delay:300
+    });
+
+    let menu = document.querySelector('#menu-btn');
+let header = document.querySelector('.header');
+
+menu.onclick = () =>{
+   menu.classList.toggle('fa-times');
+   header.classList.toggle('active');
+   document.body.classList.toggle('active');
+}
+
+window.onscroll = () =>{
+   if(window.innerWidth < 991){
+      menu.classList.remove('fa-times');
+      header.classList.remove('active');
+      document.body.classList.remove('active');
+   }
+
+   document.querySelectorAll('section').forEach(sec =>{
+
+      let top = window.scrollY;
+      let offset = sec.offsetTop - 150;
+      let height = sec.offsetHeight;
+      let id = sec.getAttribute('id');
+
+      if(top >= offset && top < offset + height){
+         document.querySelectorAll('.header .navbar a').forEach(links =>{
+            links.classList.remove('active');
+            document.querySelector('.header .navbar a[href*='+ id +']').classList.add('active')
+         });
+      };
+
+   });
+
+}
+ 
+ </script>
+    
+ </body>
+ </html>
